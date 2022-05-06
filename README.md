@@ -20,6 +20,7 @@ You will need to run `node index` and you'll be welcomed by the CloudProxy ASCII
 `Proxy succesfully started on port 1337!`
 
 From here you should be able to go to `http://localhost:1337/?url=https://json.org/example.html` and it should reroute the connection without any hiccups!
+
 Keep in mind, not all traffic will work, this is mainly made to gather JSON data from websites with CloudFlare's anti-bot protection.
 
 ## Issues
