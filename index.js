@@ -24,24 +24,26 @@ var port = 1337;
 
         const page = await browser.newPage();
 
-        urlresponse = await page.goto(urlParams);
-        responseBody = await urlresponse.text();
+        page.goto(urlParams)
+        .then(async urlresponse => {
+            console.log('urlresp', urlresponse);
+            responseBody = await urlresponse.text();
+            res.write(responseBody);
+            res.end();
+        })
+        .catch(e => {
+            res.end(e.message);
+        });
 
-        res.write(responseBody)
-        res.end()
-
-        urlInt = 0;
         process.on("exit", async (code) => {
             await browser.close();
             console.log("Closed CloudScraper with code: " + code);
         })
-
     });
+
     server.listen(port);
     process.stdout.write('\033c');
     console.log(`   _____ _                 _ _____                     \n  / ____| |               | |  __ \\                    \n | |    | | ___  _   _  __| | |__) _ __ _____  ___   _ \n | |    | |/ _ \\| | | |/ _\` |  ___| '__/ _ \\ \\/ | | | |\n | |____| | (_) | |_| | (_| | |   | | | (_) >  <| |_| |\n  \\_____|_|\\___/ \\__,_|\\__,_|_|   |_|  \\___/_/\\_\\__,  |\n                                                  __/ |\nBy \x1b[1mPGSleepy (https://github.com/pgsleepy)\x1b[0m        |___/ \n\x1b[0m\n\x1b[7mUsage: http://localhost:${port}/?url=https://www.yoururl.com/index.php\x1b[0m`)
     console.log(`\x1b[7mMake sure to add the HTTP(S):// protocol!\x1b[0m`)
     console.log(`Proxy succesfully started on port ${port}`)
-
 })();
-
