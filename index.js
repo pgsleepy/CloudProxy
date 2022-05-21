@@ -8,21 +8,19 @@ var port = 1337;
 //--------------------------------------------------------/
 
 (async () => {
-    var urlInt = 0;
     puppeteer.use(StealthPlugin())
     const browser = await puppeteer.launch({ headless: true });
 
     //Start Native Nodejs HTTP server
     var server = http.createServer(async function (req, res) {
-        const queryObject = url.parse(req.url, true);
-        if (queryObject.search === null) return;
-        if (queryObject.search.includes('?url=')) urlInt++;
+        const parsedUrl = url.parse(req.url, true);
 
-        if (urlInt < 1) return res.end("No URL parameters given.")
+        if (parsedUrl.query == null) return res.end("Something went wrong, please restart.");
+        if (parsedUrl.query.url == null || parsedUrl.query.url === '') return res.end("No URL parameters given.");
 
-        urlParams = queryObject.search.replace("?url=", "")
+        urlParams = parsedUrl.query.url;
 
-        if (!urlParams.includes("http://")) if (!urlParams.includes("https://")) return res.end(`Invalid URL. HTTP:// or HTTPS:// expected\nDid you perhabs mean: https://${urlParams}`)
+        if (!urlParams.match(/^https?/)) return res.end(`Invalid URL. HTTP:// or HTTPS:// expected\nDid you perhaps mean: https://${urlParams}`);
 
         const page = await browser.newPage();
 
