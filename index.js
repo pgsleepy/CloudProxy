@@ -40,6 +40,9 @@ var port = 1337;
             console.log("Closed CloudScraper with code: " + code);
         })
     });
+        .finally(_ => {
+            page.close();
+        });
 
     server.listen(port);
     process.stdout.write('\033c');
