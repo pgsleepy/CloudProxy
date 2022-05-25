@@ -1,3 +1,4 @@
+
 # CloudProxy
 A simple yet highly efficient CloudFlare anti-bot bypasser using [puppeteer-extra](https://github.com/berstend/puppeteer-extra) and [# puppeteer-extra-plugin-stealth](https://github.com/turnalan/puppeteer-extra-plugin-stealth-corgi-io) built in [Node.JS](https://nodejs.org/en/) with :heart: by PGSleepy
 
@@ -12,6 +13,24 @@ This should install 3 dependencies:
  - puppeteer
  - puppeteer-extra
  - puppeteer-extra-plugin-stealth
+
+Additionally, if you're using a Linux based system, there are some additional steps that need to be taken before you're able to run it.
+First things first, you'll need to install all the dependencies for Chromium.
+
+`sudo apt-get install libgconf-2-4 libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libgbm-dev libnss3-dev libxss-dev libasound2`
+
+Once that's done there's an error `Running as root without --no-sandbox is not supported.` which is caused by the nature of Chromium not being able to run in root.
+Luckily, you can mostly fix that by passing the --no-sandbox argument 
+
+### (_**NOT RECOMMENDED FOR PUBLIC USAGE! ALLOWS FOR REMOTE CODE EXECUTION!**_)
+
+To do this you change the field in `index.js` that says 
+
+`const  browser  =  await  puppeteer.launch({  headless: true  });`
+
+to
+
+`const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']});`
 
 
 ## Usage
