@@ -26,7 +26,7 @@ First things first, you'll need to install all the dependencies for Chromium.
 Once that's done there's an error `Running as root without --no-sandbox is not supported.` which is caused by the nature of Chromium not being able to run in root.
 Luckily, you can mostly fix that by passing the --no-sandbox argument 
 
-Disabling the sandbox makes your server more vulnerable to exploits via webpages and especially with the nature of this program it means that anyone can go to your CloudProxy IP:Port/?url= and perform [Remote Code Execution/Arbitary Code Execution](https://en.wikipedia.org/wiki/Arbitrary_code_execution).
+Disabling the sandbox makes your server more vulnerable to exploits via webpages and especially with the nature of this program it means that anyone can go to your CloudProxy IP:Port/?url= and perform [Remote Code Execution/Arbitrary Code Execution](https://en.wikipedia.org/wiki/Arbitrary_code_execution).
 
 Use at your own risk!
 
