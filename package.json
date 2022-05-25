@@ -2,7 +2,12 @@
   "name": "cloudproxy",
   "description": "This is a proxy that emulates an actual web browser using Puppeteer to bypass CloudFlare's anti-bot protection.",
   "author": "PGSleepy",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
   "dependencies": {
+    "nodemon": "^2.0.16",
     "puppeteer": "^13.7.0",
     "puppeteer-extra": "^3.2.3",
     "puppeteer-extra-plugin-stealth": "^2.9.0"
