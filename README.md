@@ -14,6 +14,10 @@ This should install 3 dependencies:
  - puppeteer-extra
  - puppeteer-extra-plugin-stealth
 
+
+## Linux
+### (_**NOT RECOMMENDED FOR PUBLIC USAGE! ALLOWS FOR REMOTE CODE EXECUTION!**_)
+
 Additionally, if you're using a Linux based system, there are some additional steps that need to be taken before you're able to run it.
 First things first, you'll need to install all the dependencies for Chromium.
 
@@ -22,7 +26,9 @@ First things first, you'll need to install all the dependencies for Chromium.
 Once that's done there's an error `Running as root without --no-sandbox is not supported.` which is caused by the nature of Chromium not being able to run in root.
 Luckily, you can mostly fix that by passing the --no-sandbox argument 
 
-### (_**NOT RECOMMENDED FOR PUBLIC USAGE! ALLOWS FOR REMOTE CODE EXECUTION!**_)
+Disabling the sandbox makes your server more vulnerable to exploits via webpages and especially with the nature of this program it means that anyone can go to your CloudProxy IP:Port/?url= and perform [Remote Code Execution/Arbitary Code Execution](https://en.wikipedia.org/wiki/Arbitrary_code_execution).
+
+Use at your own risk!
 
 To do this you change the field in `index.js` that says 
 
