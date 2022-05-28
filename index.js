@@ -9,7 +9,10 @@ var port = 1337;
 
 (async () => {
     puppeteer.use(StealthPlugin())
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
 
     //Start Native Nodejs HTTP server
     http.createServer(async function (req, res) {
